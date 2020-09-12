@@ -5,6 +5,7 @@
 
 import sys
 
+import license
 import generator as gen
 import command as cmd
 import help
