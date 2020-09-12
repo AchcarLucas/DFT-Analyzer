@@ -9,6 +9,7 @@ import license
 import generator as gen
 import command as cmd
 import help
+import graphic
 
 '''
     Loop Principal
@@ -45,4 +46,18 @@ def _main():
 '''
     Inicializa o Programa
 '''
-_main()
+
+#_main()
+
+'''
+    Test
+'''
+
+test = gen.SignalGenerator([1], [5, 5, 5], [0, 90, 0], 100, 2)
+gen.signalGenerator('test/test.data', test)
+del test
+signal = gen.data.loadData('test/test.data')
+print(signal.data)
+graphic.drawGraphicData('Wave Signal', 'Time (10^-2 s)', 'Magnetude', [10, 5], signal.data)
+graphic.drawGraphicData('Wave Signal', 'Time (10^-2 s)', 'Magnetude', [5, 5], signal.data)
+graphic.showGraphic()
