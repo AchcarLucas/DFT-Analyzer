@@ -30,7 +30,7 @@ def _version():
         title: Titulo do gráfico
         x_label: Significado do dado no eixo x
         y_label: Significado do dado no eixo y
-        size_x_y: List [altura, largura] do gráfico
+        size_x_y: List [largura, altura] do gráfico
         data: Contém os pontos da onda
     Return:
         None
