@@ -14,6 +14,8 @@ def _version():
     Arg:
         file_name: Nome do arquivo para onde será salvo
         data: Objeto a ser serializado
+    Return
+        None
 '''
 def saveData(file_name, data):
     with open(file_name, 'wb') as output:
@@ -24,8 +26,11 @@ def saveData(file_name, data):
     Function: loadData
     Arg:
         file_name: Nome do arquivo onde os dados estão
+    Return
+        Class Data Serialized
 '''
 def loadData(file_name):
     with open(file_name, 'rb') as input:
         return pickle.load(input)
     
+print(f'Data Module Version: {_version()}')

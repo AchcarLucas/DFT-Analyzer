@@ -9,11 +9,16 @@ import generator as gen
 import command as cmd
 import help
 
+'''
+    Loop Principal
+    Function: _main
+    Args:
+        None
+    Return:
+        None
+'''
 def _main():
-    print(f'Generator Module Version: {gen._version()}')
-    print(f'Command Module Version: {cmd._version()}')
-    print(f'Help Module Version: {help._version()}')
-    
+    # Verifica se o comando é válido
     try:
         c_index = cmd.checkCommand(sys.argv[1])
     except:
@@ -36,4 +41,7 @@ def _main():
     else:
         help.inv_args(sys.argv[1])
 
+'''
+    Inicializa o Programa
+'''
 _main()
