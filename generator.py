@@ -39,7 +39,7 @@ class DataSignal(object):
     Data:
         frequencies: As frequências (Hz) bases para gerar o pacote de dados (list)
         magnetude: Magnetude correspondente a cada frequência (list)
-        phases: Fases (Rad) correspondente a cada frequência
+        phases: Fases (Graus) correspondente a cada frequência
         sample_rate: Quantos bytes por amostragem (amostras de 1 segundo)
         duration: Duração (segundos) que o sinal deve ter
     Functions:
@@ -86,7 +86,7 @@ def signalGenerator(file_name, signalGen):
         for g in range(0, signalGen.sample_rate*signalGen.duration):
             DataGenerator.append(0)
             for i in range(0, len(signalGen.frequencies)):
-                DataGenerator[g] += signalGen.magnetude[i]*math.sin(signalGen.frequencies[i]*2*math.pi*g*FS + signalGen.phases[i]);
+                DataGenerator[g] += signalGen.magnetude[i]*math.sin(signalGen.frequencies[i]*2*math.pi*g*FS + (signalGen.phases[i]*math.pi / 180));
 
         dataSignal = DataSignal(signalGen.sample_rate, signalGen.duration, len(DataGenerator), DataGenerator)
         data.saveData(file_name, dataSignal)
