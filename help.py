@@ -42,7 +42,7 @@ def c_help():
     print(f'arg help')
     print(f'  Abre a tela de ajuda')  
     print(f'-----------------------------------------------------------------')
-    print(f'arg gen [nome-arquivo] [frequências] [magnetudes] [fases]')
+    print(f'arg generator [nome-arquivo] [frequências] [magnetudes] [fases]')
     print(f'  O comando acima gera sinais com as frequências definidas, ex: gen 5 12')          
     print(f'  irá gerar um arquivo de dados de onda complexa de frequências 5 hz e 12 hz')
     print(f'  * [magnetudes] e [fases] são opcionais')
