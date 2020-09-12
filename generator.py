@@ -21,16 +21,16 @@ def _version():
     Class: DataSignal
     Data:
         sample_rate: Quantos bytes por amostragem (amostras de 1 segundo)
-        time_duration: Tempo de duração dos dados (em segundos)
+        duration: Tempo de duração dos dados (em segundos)
         data_len: Tamanho total dos dados
         data: Dados da onda
     Functions:
         None
 '''
 class DataSignal(object):
-    def __init__(self, sample_rate, time_duration, data_len, data):
+    def __init__(self, sample_rate, duration, data_len, data):
         self.sample_rate = sample_rate
-        self.time_duration = time_duration
+        self.duration = duration
         self.data_len = data_len
         self.data = data
 '''

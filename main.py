@@ -58,6 +58,7 @@ gen.signalGenerator('test/test.data', test)
 del test
 signal = gen.data.loadData('test/test.data')
 print(signal.data)
-graphic.drawGraphicData('Wave Signal', 'Time (10^-2 s)', 'Magnetude', [10, 5], signal.data)
-graphic.drawGraphicData('Wave Signal', 'Time (10^-2 s)', 'Magnetude', [5, 5], signal.data)
+axies_1 = graphic.drawGraphicData('Wave Signal', 'Time (10^-2 s)', 'Magnetude', [10, 6], signal.data)
+graphic.drawText(0.9, 0.9, f'SAMPLE RATE {signal.sample_rate}', axies_1, 'blue', 0.4);
+graphic.drawText(0.9, 0.83, f'DURATION {signal.duration} (s)', axies_1, 'red', 0.4);
 graphic.showGraphic()

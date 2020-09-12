@@ -33,7 +33,7 @@ def _version():
         size_x_y: List [largura, altura] do gráfico
         data: Contém os pontos da onda
     Return:
-        None
+        Axies (Janela do Gráfico)
 '''
 def drawGraphicData(title, x_label, y_label, size_x_y, data):
     plot.style.use('./mplstyle/presentation.mplstyle')
@@ -44,6 +44,26 @@ def drawGraphicData(title, x_label, y_label, size_x_y, data):
     axies.set_title(title)
     
     axies.plot(data, 'r-o')
+    return axies
+
+'''
+    Função para desenhar os dados de uma onda complexa
+    Function: drawGraphicData
+    Args:
+        x: Posição x na tela, (0 até 1)
+        y: Posição y na tela, (0 até 1)
+        color: A cor da caixa do texto
+        alpha: Transparência da caixa de texto
+        horizontal_align: Alinhamento horizontal do texto
+        vertical_align: Alinhamento vertical do texto
+        axies: Axies do matplot
+    Return:
+        None 
+'''
+def drawText(x, y, text, axies, color='black', alpha=0.0, horizontal_align='center', vertical_align='center'):
+    axies.text(x,  y, text, bbox=dict(facecolor=color, alpha=alpha),
+                 horizontalalignment=horizontal_align, verticalalignment=vertical_align,
+                 transform=axies.transAxes)
 
 '''
     Função que exibe todos os gráficos adicionados
