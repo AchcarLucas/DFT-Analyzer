@@ -10,6 +10,7 @@ import generator as gen
 import command as cmd
 import help
 import graphic
+import numpy as np
 
 '''
     Loop Principal
@@ -44,12 +45,30 @@ def _main():
     elif(c_index == 3):
         try:
             file_name = sys.argv[2]
+            
+            try:
+                arg_color = sys.argv[3]
+            except:
+                arg_color = 'red'
+                
             # Le o arquivo indicado, faz a unserialized para ter acesso aos dados
             signal = gen.data.loadData(file_name)
-            
-            axies_1 = graphic.drawGraphicData('Wave Signal', 'Time (10^-2 s)', 'Magnetude', [10, 6], signal.data)
-            graphic.drawText(0.9, 0.9, f'SAMPLE RATE {signal.sample_rate}', axies_1, 'blue', 0.4);
-            graphic.drawText(0.9, 0.83, f'DURATION {signal.duration} (s)', axies_1, 'red', 0.4);
+
+            # Cria o Axies (gráfico)
+            axies_1 = graphic.getAxiesData('Wave Signal', 'Time (s)', 'Amplitude', [10, 6])
+
+            # Plota os textos referentes ao sample_rate, duration e total_data
+            graphic.drawText(0.8, 0.9, f'SAMPLE RATE {signal.sample_rate}', axies_1, 'blue', 0.4);
+            graphic.drawText(0.8, 0.83, f'DURATION {signal.duration} (s)', axies_1, 'red', 0.4);
+            graphic.drawText(0.8, 0.76, f'TOTAL DATA(S) {len(signal.data)}', axies_1, 'green', 0.4);
+
+            # Limita o gráfico entre 0 até duration (segundos)
+            axies_1.set_xlim(0, signal.duration)
+
+            # Manda para o plot exibir a wave no intervalo dado (normalizado)
+            axies_1.plot(np.arange(0, signal.duration, 1 / (signal.sample_rate))[:len(signal.data)], signal.data, label='normalized', color=arg_color)
+
+            # Exibe todos os gráficos
             graphic.showGraphic()
             
             del signal
@@ -74,13 +93,20 @@ _main()
 '''
 
 '''
-test = gen.SignalGenerator([1], [5, 5, 5], [0, 90, 0], 100, 2)
+test = gen.SignalGenerator([1], [5, 5, 5], [0, 0, 0], 100, 3)
 gen.signalGenerator('test/test.data', test)
 del test
 signal = gen.data.loadData('test/test.data')
 print(signal.data)
-axies_1 = graphic.drawGraphicData('Wave Signal', 'Time (10^-2 s)', 'Magnetude', [10, 6], signal.data)
-graphic.drawText(0.9, 0.9, f'SAMPLE RATE {signal.sample_rate}', axies_1, 'blue', 0.4);
-graphic.drawText(0.9, 0.83, f'DURATION {signal.duration} (s)', axies_1, 'red', 0.4);
+axies_1 = graphic.getAxiesData('Wave Signal', 'Samples', 'Magnetude', [10, 6])
+
+graphic.drawText(0.8, 0.9, f'SAMPLE RATE {signal.sample_rate}', axies_1, 'blue', 0.4);
+graphic.drawText(0.8, 0.83, f'DURATION {signal.duration} (s)', axies_1, 'red', 0.4);
+graphic.drawText(0.8, 0.76, f'TOTAL SAMPLE(S) {len(signal.data)}', axies_1, 'green', 0.4);
+
+
+axies_1.set_xlim(0, signal.duration)
+axies_1.plot(np.arange(0, signal.duration, 1 / (signal.sample_rate))[:len(signal.data)], signal.data, label='normalized')
+
 graphic.showGraphic()
 '''

@@ -3,7 +3,7 @@
     Author: Lucas Campos Achcar
 '''
 
-shellCommands = {0:'help', 1:'generator', 2:'analyzer', 3:'signal-data'}
+shellCommands = {0:'help', 1:'generator', 2:'signal-analyzer', 3:'signal-data', 4:'wav-data'}
 
 '''
     Versão do Arquivo command.py

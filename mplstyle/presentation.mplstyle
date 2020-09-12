@@ -2,5 +2,5 @@ axes.titlesize : 24
 axes.labelsize : 10
 lines.linewidth : 1
 lines.markersize : 0.1
-xtick.labelsize : 16
-ytick.labelsize : 16
+xtick.labelsize : 10
+ytick.labelsize : 10

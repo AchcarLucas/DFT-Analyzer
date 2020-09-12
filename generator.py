@@ -2,6 +2,7 @@
     Module: Gerador de Sinal
     Author: Lucas Campos Achcar
 '''
+#import pyaudio
 import math
 import data
 
