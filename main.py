@@ -13,14 +13,27 @@ def _main():
     print(f'Generator Module Version: {gen._version()}')
     print(f'Command Module Version: {cmd._version()}')
     print(f'Help Module Version: {help._version()}')
-    help._init()
+    
     try:
-        index = cmd.checkCommand(sys.argv[1])
-        if(index == -1):
-            print(f'O comando {sys.argv[1]} é inválido, se você estiver com dificuldade, digite o nome do programa')
-            print(f'digite o nome do programa e logo em seguida o comando help para saber mais sobre.')
-            return
-    #for arg in sys.argv[1:]:
-        #print(cmd.checkCommand(arg))
+        c_index = cmd.checkCommand(sys.argv[1])
+    except:
+        help._except()
+        return
+
+    # Help
+    if(c_index == 0):
+        help.c_help()
+    # Generator
+    elif(c_index == 1):
+        print('Generator')
+        for arg in sys.argv[2:]:
+            print(arg)
+    # Analyzer
+    elif(c_index == 2):
+        print('Analyzer')
+        for arg in sys.argv[2:]:
+            print(arg)
+    else:
+        help.inv_args(sys.argv[1])
 
 _main()

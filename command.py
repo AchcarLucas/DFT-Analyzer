@@ -3,7 +3,7 @@
     Author: Lucas Campos Achcar
 '''
 
-shellCommands = {0:'help', 1:'gen', 2:'analyzer'}
+shellCommands = {0:'help', 1:'generator', 2:'analyzer'}
 
 def _version():
     return '0.0.1'
