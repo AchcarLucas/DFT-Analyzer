@@ -31,6 +31,7 @@ def _main():
     # Help
     if(c_index == 0):
         help.c_help()
+        
     # Generator
     elif(c_index == 1):
         # Verifica se foi digitado o nome do arquivo no argumento
@@ -103,16 +104,19 @@ def _main():
         print('Analyzer')
         for arg in sys.argv[2:]:
             print(arg)
+            
     # Signal Data
     elif(c_index == 3):
         try:
             file_name = sys.argv[2]
-            
+
+            # Verifica se o argumento da cor existe, se não, mantém padrão
             try:
                 arg_color = sys.argv[3]
             except:
                 arg_color = 'red'
 
+            # Verifica se o argumento do limite de exibição inferior existe, se não, mantém padrão
             try:
                 start_limit_display = float(sys.argv[4])
             except:
@@ -121,6 +125,7 @@ def _main():
             # Le o arquivo indicado, faz a unserialized para ter acesso aos dados
             signal = gen.data.loadData(file_name)
 
+            # Verifica se o argumento do limite de exibição superior existe, se não, mantém padrão
             try:
                 end_limit_display = float(sys.argv[5])
             except:
@@ -133,7 +138,6 @@ def _main():
             graphic.drawText(0.8, 0.9, f'SAMPLE RATE {signal.sample_rate}', axies_1, 'blue', 0.4);
             graphic.drawText(0.8, 0.83, f'DURATION {signal.duration} (s)', axies_1, 'red', 0.4);
             graphic.drawText(0.8, 0.76, f'TOTAL DATA(S) {len(signal.data)}', axies_1, 'green', 0.4);
-
 
             # Limita o gráfico entre 0 até duration (segundos)
             axies_1.set_xlim(start_limit_display, end_limit_display)
@@ -152,6 +156,7 @@ def _main():
             print(f'Para mais informações use o argumento help')
             print(f'----------------------------------------------------------------')
             return
+        
     # Wav Data
     elif(c_index == 4):
         # Verifica se foi digitado o nome do arquivo wav no argumento
@@ -174,6 +179,7 @@ def _main():
         else:
             print(f'Desculpe, não foi possível gerar o sinal, verifique o comando novamente')
             
+    # Nenhum comando encontrado
     else:
         help.inv_args(sys.argv[1])
 

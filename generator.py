@@ -99,6 +99,7 @@ def signalGenerator(file_name, signalGen):
                     
                 DataGenerator[g] += signalGen.magnetude[i]*math.sin(signalGen.frequencies[i]*2*math.pi*g*FS + (signalGen.phases[i]*math.pi / 180));
 
+        # Gera a classe e sinal e salva o objeto no arquivo de dados
         dataSignal = DataSignal(signalGen.sample_rate, signalGen.duration, len(DataGenerator), DataGenerator)
         data.saveData(file_name, dataSignal)
         
