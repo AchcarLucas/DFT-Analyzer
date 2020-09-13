@@ -112,9 +112,19 @@ def _main():
                 arg_color = sys.argv[3]
             except:
                 arg_color = 'red'
+
+            try:
+                start_limit_display = float(sys.argv[4])
+            except:
+                start_limit_display = 0.0
                 
             # Le o arquivo indicado, faz a unserialized para ter acesso aos dados
             signal = gen.data.loadData(file_name)
+
+            try:
+                end_limit_display = float(sys.argv[5])
+            except:
+                end_limit_display = signal.duration
 
             # Cria o Axies (gráfico)
             axies_1 = graphic.getAxiesData('Wave Signal', 'Time (s)', 'Amplitude', [10, 6])
@@ -124,8 +134,9 @@ def _main():
             graphic.drawText(0.8, 0.83, f'DURATION {signal.duration} (s)', axies_1, 'red', 0.4);
             graphic.drawText(0.8, 0.76, f'TOTAL DATA(S) {len(signal.data)}', axies_1, 'green', 0.4);
 
+
             # Limita o gráfico entre 0 até duration (segundos)
-            axies_1.set_xlim(0, signal.duration)
+            axies_1.set_xlim(start_limit_display, end_limit_display)
 
             # Manda para o plot exibir a wave no intervalo dado (normalizado)
             axies_1.plot(np.arange(0, signal.duration, 1 / (signal.sample_rate))[:len(signal.data)], signal.data, label='normalized', color=arg_color)
@@ -169,7 +180,8 @@ def _main():
         except:
             e_time_analysis = 1.0
 
-        if(createSignalFromWav(wav_file_name, file_name, s_time_analysis, e_time_analysis)):
+        # Gera o arquivo de dados da onda
+        if(gen.createSignalFromWav(wav_file_name, file_name, s_time_analysis, e_time_analysis)):
             print(f'Sinal gerado com sucesso, o arquivo foi gerado em {file_name}')
         else:
             print(f'Desculpe, não foi possível gerar o sinal, verifique o comando novamente')
