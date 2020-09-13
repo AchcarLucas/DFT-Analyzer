@@ -58,7 +58,7 @@ def _main():
             return
 
         frequencies = []
-        magnetudes = [5, 6, 3]
+        magnetudes = []
         phases = []
 
         # Já foram 4 argumentos, falta o resto
@@ -82,7 +82,7 @@ def _main():
         # Procura todos os argumentos da fase
         for arg in sys.argv[c_count:]:
             c_count += 1
-            if(arg != ';'):
+            if(arg != '-'):
                 phases.append(float(arg))
                 continue
             break
@@ -116,31 +116,40 @@ def _main():
         except:
             color = 'red'
 
+        interval_analyzer = [0, 0]
+
+        # Verifica se foi digitado o limite inicial da frequência, coloca padrão 0
+        try:
+            interval_analyzer[0] = int(sys.argv[4])
+        except:
+            interval_analyzer[0] = 0
+
+        #  Verifica se foi digitado o limite final da frequência, coloca padrão 100
+        try:
+            interval_analyzer[1] = int(sys.argv[5])
+        except:
+            interval_analyzer[1] = 100
+
         # Pega as informações carregando o arquivo de dados
         signal = gen.data.loadData(file_name)
-        out_data = dft.DFT(signal.data, signal.sample_rate)
+
+        out_data = dft.DFT(signal.data, signal.sample_rate, interval_analyzer)
 
         # Normaliza a magnetude
-        mag = [(v._mag / signal.duration)*(100 / signal.sample_rate)*(0.01)*2 for v in out_data]
+        mag = [v._mag for v in out_data]
 
         # Adiciona o gráfico com suas legendas
         axies_1 = graphic.getAxiesData('DFT', 'Frequência (Hz)', 'Magnetude', [10, 6])
 
-        # Verifica qual é a última frequência para dar limitar o gráfico
-        freq_clamp = 0
-        for i in range(0, int(len(mag) / 2)):
-            if mag[i] > 0.1:
-                freq_clamp = i + 1
-
         # Configuração dos eixos (exibição)
-        major_ticks = np.arange(0, freq_clamp, np.ceil(freq_clamp*0.1))
-        minor_ticks = np.arange(0, freq_clamp, np.ceil(freq_clamp*0.1))
+        major_ticks = np.arange(0, interval_analyzer[1], np.ceil(interval_analyzer[1]*(1 / interval_analyzer[1])))
+        minor_ticks = np.arange(0, interval_analyzer[1], np.ceil(interval_analyzer[1]*(1 / interval_analyzer[1])))
 
-        axies_1.set_xticks(major_ticks)
+        axies_1.set_xticks(major_ticks, minor=True)
         axies_1.set_xticks(minor_ticks, minor=True)
 
         # Limita os eixos para exibir até a última frequência
-        axies_1.set_xlim(0, freq_clamp)
+        axies_1.set_xlim(interval_analyzer[0], interval_analyzer[1])
         axies_1.set_ylim(0, max(mag) + 1)
 
         # Configura o Grid
@@ -150,8 +159,8 @@ def _main():
         axies_1.grid(which='major', alpha=1.0)
 
         # Exibe as linhas verticais das frequências
-        for i in range(0, int(len(mag) / 2)):
-            axies_1.vlines(i, 0, mag[i], lw=2, color=color)
+        for i in range(0, int(len(mag))):
+            axies_1.vlines(i + interval_analyzer[0], 0, mag[i], lw=2, color=color)
 
         # Modo antigo!
         #axies_1.plot(np.arange(0, len(mag), 1)[:len(mag)], mag, label='normalized', color='red')

@@ -55,21 +55,23 @@ class DFTClass(object):
     Return:
         Class DFTClass
 '''
-def DFT(in_sample, sample_rate):
+def DFT(in_sample, sample_rate, interval_analyzer):
     out_sample = []
-    for i in range(0, int(sample_rate / 2)):
+
+    # Quantidade de pontos na amostra
+    N = sample_rate
+    
+    for k in range(interval_analyzer[0], interval_analyzer[1]):
         out_sample.append(DFTClass(ComplexClass(0, 0), 0, 0))
-        
-    for k in range(0, int(sample_rate / 2)):
         t_complex = ComplexClass(0, 0)
         
-        for n in range(0, len(in_sample)):
-            t_complex._real += in_sample[n]*math.cos((2*math.pi*k*n) / sample_rate);
-            t_complex._imag += (-1)*in_sample[n]*math.sin((2*math.pi*k*n) / sample_rate);
+        for n in range(0, N - 1):
+            t_complex._real += in_sample[n]*math.cos((2*math.pi*k*n) / N);
+            t_complex._imag += (-1)*in_sample[n]*math.sin((2*math.pi*k*n) / N);
             
-        out_sample[k]._complex = t_complex
-        out_sample[k]._mag = math.sqrt(pow(t_complex._real, 2) + pow(t_complex._imag, 2));
-        out_sample[k]._phase = math.atan2(t_complex._real, t_complex._imag);
+        out_sample[k - interval_analyzer[0]]._complex = t_complex
+        out_sample[k - interval_analyzer[0]]._mag = math.sqrt(pow(t_complex._real, 2) + pow(t_complex._imag, 2)) / N;
+        out_sample[k - interval_analyzer[0]]._phase = math.atan2(t_complex._real, t_complex._imag);
             
     return out_sample
 
