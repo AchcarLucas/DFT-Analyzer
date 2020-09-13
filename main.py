@@ -161,10 +161,7 @@ def _main():
         # Exibe as linhas verticais das frequências
         for i in range(0, int(len(mag))):
             axies_1.vlines(i + interval_analyzer[0], 0, mag[i], lw=2, color=color)
-
-        # Modo antigo!
-        #axies_1.plot(np.arange(0, len(mag), 1)[:len(mag)], mag, label='normalized', color='red')
-        
+            
         graphic.showGraphic()
 
     # Signal Data
@@ -178,20 +175,22 @@ def _main():
             except:
                 arg_color = 'red'
 
-            # Verifica se o argumento do limite de exibição inferior existe, se não, mantém padrão
+            time_limit_display = [0, 0]
+
+            # Verifica se o argumento do limite de tempo inferior existe, se não, mantém padrão
             try:
-                start_limit_display = float(sys.argv[4])
+                time_limit_display[0] = float(sys.argv[4])
             except:
-                start_limit_display = 0.0
+                time_limit_display[0] = 0.0
                 
             # Le o arquivo indicado, faz a unserialized para ter acesso aos dados
             signal = gen.data.loadData(file_name)
 
-            # Verifica se o argumento do limite de exibição superior existe, se não, mantém padrão
+            # Verifica se o argumento do limite de tempo superior existe, se não, mantém padrão
             try:
-                end_limit_display = float(sys.argv[5])
+                time_limit_display[1] = float(sys.argv[5])
             except:
-                end_limit_display = signal.duration
+                time_limit_display[1] = signal.duration
 
             # Cria o Axies (gráfico)
             axies_1 = graphic.getAxiesData('Wave Signal', 'Time (s)', 'Amplitude', [10, 6])
@@ -202,7 +201,7 @@ def _main():
             graphic.drawText(0.8, 0.76, f'TOTAL DATA(S) {len(signal.data)}', axies_1, 'green', 0.4);
 
             # Limita o gráfico entre 0 até duration (segundos)
-            axies_1.set_xlim(start_limit_display, end_limit_display)
+            axies_1.set_xlim(time_limit_display[0], time_limit_display[1])
 
             # Manda para o plot exibir a wave no intervalo dado (normalizado)
             axies_1.plot(np.arange(0, signal.duration, 1 / (signal.sample_rate))[:len(signal.data)], signal.data, label='normalized', color=arg_color)
