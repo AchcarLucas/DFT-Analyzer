@@ -14,7 +14,7 @@ import math
         None
 '''
 def _version():
-    return '0.0.1'
+    return '0.0.3'
 
 '''
     Classe Complexa
@@ -57,10 +57,10 @@ class DFTClass(object):
 '''
 def DFT(in_sample, sample_rate):
     out_sample = []
-    for i in range(0, sample_rate):
+    for i in range(0, int(sample_rate / 2)):
         out_sample.append(DFTClass(ComplexClass(0, 0), 0, 0))
         
-    for k in range(0, sample_rate):
+    for k in range(0, int(sample_rate / 2)):
         t_complex = ComplexClass(0, 0)
         
         for n in range(0, len(in_sample)):

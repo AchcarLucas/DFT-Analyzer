@@ -115,7 +115,6 @@ def _main():
             color = sys.argv[3]
         except:
             color = 'red'
-            return
 
         # Pega as informações carregando o arquivo de dados
         signal = gen.data.loadData(file_name)
@@ -127,26 +126,32 @@ def _main():
         # Adiciona o gráfico com suas legendas
         axies_1 = graphic.getAxiesData('DFT', 'Frequência (Hz)', 'Magnetude', [10, 6])
 
-        # Configuração do grid e dos eixos
-        major_ticks = np.arange(0, signal.sample_rate, 5)
-        minor_ticks = np.arange(0, signal.sample_rate, 5)
+        # Verifica qual é a última frequência para dar limitar o gráfico
+        freq_clamp = 0
+        for i in range(0, int(len(mag) / 2)):
+            if mag[i] > 0.1:
+                freq_clamp = i + 1
+
+        # Configuração dos eixos (exibição)
+        major_ticks = np.arange(0, freq_clamp, np.ceil(freq_clamp*0.1))
+        minor_ticks = np.arange(0, freq_clamp, np.ceil(freq_clamp*0.1))
 
         axies_1.set_xticks(major_ticks)
         axies_1.set_xticks(minor_ticks, minor=True)
 
-        axies_1.set_xlim(0, signal.sample_rate / 2)
+        # Limita os eixos para exibir até a última frequência
+        axies_1.set_xlim(0, freq_clamp)
         axies_1.set_ylim(0, max(mag) + 1)
 
-        # Tipo de grid
+        # Configura o Grid
         axies_1.grid(which='both')
-
-        # Espaçamento entre os grid
+        
         axies_1.grid(which='minor', alpha=1.0)
         axies_1.grid(which='major', alpha=1.0)
 
         # Exibe as linhas verticais das frequências
         for i in range(0, int(len(mag) / 2)):
-            axies_1.vlines(i, 0, mag[i], lw=2, color='r')
+            axies_1.vlines(i, 0, mag[i], lw=2, color=color)
 
         # Modo antigo!
         #axies_1.plot(np.arange(0, len(mag), 1)[:len(mag)], mag, label='normalized', color='red')
