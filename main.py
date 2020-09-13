@@ -145,17 +145,19 @@ def _main():
         # Adiciona o gráfico com suas legendas
         axies_1 = graphic.getAxiesData('DFT Analyzer', 'Frequência (Hz)', 'Magnetude', [10, 6])
 
+        max_value_mag = max(mag) + 5;
+
         # Configuração dos eixos (exibição)
-        major_ticks = np.arange(0, interval_analyzer[1], np.ceil(interval_analyzer[1]*(1 / interval_analyzer[1])))
-        minor_ticks = np.arange(0, interval_analyzer[1], np.ceil(interval_analyzer[1]*(1 / interval_analyzer[1])))
+        x_major_ticks = np.arange(0, interval_analyzer[1], np.ceil(interval_analyzer[1]*(1 / interval_analyzer[1])))
+        y_major_ticks = np.arange(0, max_value_mag, np.ceil(max_value_mag*(1 / max_value_mag)))
 
         # Exibe os valores limites superiores e inferiores
-        axies_1.set_xticks(major_ticks, minor=True)
-        axies_1.set_xticks(minor_ticks, minor=True)
+        axies_1.set_xticks(x_major_ticks, minor=True)
+        axies_1.set_yticks(y_major_ticks, minor=True)
 
         # Limita os eixos para exibir até a última frequência
         axies_1.set_xlim(interval_analyzer[0], interval_analyzer[1])
-        axies_1.set_ylim(0, max(mag) + 1)
+        axies_1.set_ylim(0, max_value_mag)
 
         # Configura o Grid
         axies_1.grid(which='both')
@@ -186,17 +188,19 @@ def _main():
         # Adiciona o gráfico com suas legendas
         axies_2 = graphic.getAxiesData('Phase Analyzer', 'Frequências (Hz)', 'Fases (º)', [10, 6])
 
+        max_value_phase = max(phases) + 5
+
         # Configuração dos eixos (exibição)
-        major_ticks = np.arange(0, interval_analyzer[1], np.ceil(interval_analyzer[1]*(1 / interval_analyzer[1])))
-        minor_ticks = np.arange(0, interval_analyzer[1], np.ceil(interval_analyzer[1]*(1 / interval_analyzer[1])))
+        x_major_ticks = np.arange(0, interval_analyzer[1], np.ceil(interval_analyzer[1]*(1 / interval_analyzer[1])))
+        y_major_ticks = np.arange(0, max_value_phase, np.ceil(max_value_phase*(1 / max_value_phase)))
 
         # Exibe os valores limites superiores e inferiores
-        axies_2.set_xticks(major_ticks, minor=True)
-        axies_2.set_xticks(minor_ticks, minor=True)
+        axies_2.set_xticks(x_major_ticks, minor=True)
+        axies_2.set_yticks(y_major_ticks, minor=True)
 
         # Limita os eixos para exibir até a última frequência
         axies_2.set_xlim(interval_analyzer[0], interval_analyzer[1])
-        axies_2.set_ylim(0, max(phases) + 1)
+        axies_2.set_ylim(0, max_value_phase)
 
         # Configura o Grid
         axies_2.grid(which='both')
