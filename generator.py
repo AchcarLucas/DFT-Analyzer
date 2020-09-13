@@ -2,7 +2,7 @@
     Module: Gerador de Sinal
     Author: Lucas Campos Achcar
 '''
-#import pyaudio
+import wave
 import math
 import data
 
@@ -106,17 +106,4 @@ def signalGenerator(file_name, signalGen):
         #return False
 
 print(f'Generator Module Version: {_version()}')
-
-'''
-test = SignalGenerator([1, 5, 10], [5, 5, 5], [0, 0, 0], 1000, 2)
-signalGenerator('test/test.data', test)
-'''
-
-'''       
-signal = DataSignal(44100, 1, 1000, [1, 2, 3, 4, 5, 6, 7])
-data.saveData('test.data', signal)
-del signal
-signal = data.loadData('test.data')
-print(test.sample_rate)
-'''
     
