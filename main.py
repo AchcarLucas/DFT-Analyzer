@@ -161,7 +161,7 @@ def _main():
         try:
             s_time_analysis = float(sys.argv[4])
         except:
-            s_time_analysis = 0.0f
+            s_time_analysis = 0.0
 
         # Verifica se foi digitado o final do tempo de análise
         try:
