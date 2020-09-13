@@ -66,7 +66,7 @@ class SignalGenerator(object):
 '''
 def signalGenerator(file_name, signalGen):
 
-    try:
+    #try:
         # List com os dados para serem salvos
         DataGenerator = []
 
@@ -87,14 +87,23 @@ def signalGenerator(file_name, signalGen):
         for g in range(0, signalGen.sample_rate*signalGen.duration):
             DataGenerator.append(0)
             for i in range(0, len(signalGen.frequencies)):
+
+                # Magnetude é opcional, portanto, se não encontrar dados, adiciona 1 como padrão
+                if(i >= len(signalGen.magnetude)):
+                    signalGen.magnetude.append(1)
+
+                # Phase é opcional, portanto, se não encontrar dados, adiciona 0º como padrão 
+                if(i >= len(signalGen.phases)):
+                    signalGen.phases.append(0)
+                    
                 DataGenerator[g] += signalGen.magnetude[i]*math.sin(signalGen.frequencies[i]*2*math.pi*g*FS + (signalGen.phases[i]*math.pi / 180));
 
         dataSignal = DataSignal(signalGen.sample_rate, signalGen.duration, len(DataGenerator), DataGenerator)
         data.saveData(file_name, dataSignal)
         
         return True
-    except:
-        return False
+    #except:
+        #return False
 
 print(f'Generator Module Version: {_version()}')
 

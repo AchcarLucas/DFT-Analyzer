@@ -33,9 +33,71 @@ def _main():
         help.c_help()
     # Generator
     elif(c_index == 1):
-        print('Generator')
-        for arg in sys.argv[2:]:
-            print(arg)
+        # Verifica se foi digitado o nome do arquivo no argumento
+        try:
+            file_name = sys.argv[2]
+        except:
+            print(f'[nome-arquivo] é obrigatório')
+            return
+
+        # Verifica se a taxa de amostragem foi digitado no argumento
+        try:
+            sample_rate = int(sys.argv[3])
+        except:
+            print(f'[taxa-de-amostragem] é obrigatório')
+            return
+
+        # Verifica se o tempo de exibição da onda foi digitada no argumento
+        try:
+            duration = int(sys.argv[4])
+        except:
+            print(f'[duração] é obrigatório')
+            return
+
+        frequencies = []
+        magnetudes = []
+        phases = []
+
+        # Já foram 4 argumentos, falta o resto
+        c_count = 5
+        # Procura todos os argumentos da frequência
+        for arg in sys.argv[c_count:]:
+            c_count += 1
+            if(arg != ';'):
+                frequencies.append(float(arg))
+                continue
+            break
+
+        # Procura todos os argumentos da magnetudes
+        for arg in sys.argv[c_count:]:
+            c_count += 1
+            if(arg != ';'):
+                magnetudes.append(float(arg))
+                continue
+            break
+
+        # Procura todos os argumentos da fase
+        for arg in sys.argv[c_count:]:
+            c_count += 1
+            if(arg != ';'):
+                phases.append(float(arg))
+                continue
+            break
+
+        print('------------------------------------')
+        print(f'Frequências: {frequencies}')
+        print(f'Magnetudes {magnetudes}')
+        print(f'Fases {phases}')
+        
+        signal = gen.SignalGenerator(frequencies, magnetudes, phases, sample_rate, duration)
+            
+        if(gen.signalGenerator(file_name, signal)):
+            print(f'Sinal gerado com sucesso, o arquivo foi gerado em {file_name}')
+        else:
+            print(f'Desculpe, não foi possível gerar o sinal, verifique o comando novamente')
+            
+        del signal
+        print('------------------------------------')
     # Analyzer
     elif(c_index == 2):
         print('Analyzer')
@@ -85,28 +147,4 @@ def _main():
 '''
     Inicializa o Programa
 '''
-
 _main()
-
-'''
-    Test
-'''
-
-'''
-test = gen.SignalGenerator([1], [5, 5, 5], [0, 0, 0], 100, 3)
-gen.signalGenerator('test/test.data', test)
-del test
-signal = gen.data.loadData('test/test.data')
-print(signal.data)
-axies_1 = graphic.getAxiesData('Wave Signal', 'Samples', 'Magnetude', [10, 6])
-
-graphic.drawText(0.8, 0.9, f'SAMPLE RATE {signal.sample_rate}', axies_1, 'blue', 0.4);
-graphic.drawText(0.8, 0.83, f'DURATION {signal.duration} (s)', axies_1, 'red', 0.4);
-graphic.drawText(0.8, 0.76, f'TOTAL SAMPLE(S) {len(signal.data)}', axies_1, 'green', 0.4);
-
-
-axies_1.set_xlim(0, signal.duration)
-axies_1.plot(np.arange(0, signal.duration, 1 / (signal.sample_rate))[:len(signal.data)], signal.data, label='normalized')
-
-graphic.showGraphic()
-'''
