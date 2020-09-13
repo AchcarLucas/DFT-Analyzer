@@ -168,20 +168,8 @@ def _main():
             print(f'[nome-arquivo-data] é obrigatório')
             return
 
-        # Verifica se foi digitado o inicio do tempo de análise
-        try:
-            s_time_analysis = float(sys.argv[4])
-        except:
-            s_time_analysis = 0.0
-
-        # Verifica se foi digitado o final do tempo de análise
-        try:
-            e_time_analysis = float(sys.argv[5])
-        except:
-            e_time_analysis = 1.0
-
         # Gera o arquivo de dados da onda
-        if(gen.createSignalFromWav(wav_file_name, file_name, s_time_analysis, e_time_analysis)):
+        if(gen.createSignalFromWav(wav_file_name, file_name)):
             print(f'Sinal gerado com sucesso, o arquivo foi gerado em {file_name}')
         else:
             print(f'Desculpe, não foi possível gerar o sinal, verifique o comando novamente')
