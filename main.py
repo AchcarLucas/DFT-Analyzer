@@ -103,10 +103,56 @@ def _main():
         print('------------------------------------')
     # Analyzer
     elif(c_index == 2):
-        print('Analyzer')
-        for arg in sys.argv[2:]:
-            print(arg)
-            
+        # Verifica se foi digitado o nome do arquivo de dados no argumento
+        try:
+            file_name = sys.argv[2]
+        except:
+            print(f'[nome-arquivo] é obrigatório')
+            return
+
+        # Verifica se foi digitado a cor de exibição, se não, adiciona o padrão
+        try:
+            color = sys.argv[3]
+        except:
+            color = 'red'
+            return
+
+        # Pega as informações carregando o arquivo de dados
+        signal = gen.data.loadData(file_name)
+        out_data = dft.DFT(signal.data, signal.sample_rate)
+
+        # Normaliza a magnetude
+        mag = [(v._mag / signal.duration)*(100 / signal.sample_rate)*(0.01)*2 for v in out_data]
+
+        # Adiciona o gráfico com suas legendas
+        axies_1 = graphic.getAxiesData('DFT', 'Frequência (Hz)', 'Magnetude', [10, 6])
+
+        # Configuração do grid e dos eixos
+        major_ticks = np.arange(0, signal.sample_rate, 5)
+        minor_ticks = np.arange(0, signal.sample_rate, 5)
+
+        axies_1.set_xticks(major_ticks)
+        axies_1.set_xticks(minor_ticks, minor=True)
+
+        axies_1.set_xlim(0, signal.sample_rate / 2)
+        axies_1.set_ylim(0, max(mag) + 1)
+
+        # Tipo de grid
+        axies_1.grid(which='both')
+
+        # Espaçamento entre os grid
+        axies_1.grid(which='minor', alpha=1.0)
+        axies_1.grid(which='major', alpha=1.0)
+
+        # Exibe as linhas verticais das frequências
+        for i in range(0, int(len(mag) / 2)):
+            axies_1.vlines(i, 0, mag[i], lw=2, color='r')
+
+        # Modo antigo!
+        #axies_1.plot(np.arange(0, len(mag), 1)[:len(mag)], mag, label='normalized', color='red')
+        
+        graphic.showGraphic()
+
     # Signal Data
     elif(c_index == 3):
         try:
@@ -189,31 +235,3 @@ def _main():
     Inicializa o Programa
 '''
 _main()
-
-signal = gen.data.loadData('./data/test.data')
-out_data = dft.DFT(signal.data, signal.sample_rate)
-
-mag = [(v._mag / signal.duration)*(100 / signal.sample_rate)*(0.01)*2 for v in out_data]
-
-t_mag = []
-for n in range(0, int(len(mag) / 2)):
-    t_mag.append(mag[n])
-
-axies_1 = graphic.getAxiesData('DFT', 'Frequência (Hz)', 'Magnetude', [10, 6])
-
-# Major ticks every 20, minor ticks every 5
-major_ticks = np.arange(0, signal.sample_rate, 5)
-minor_ticks = np.arange(0, signal.sample_rate, 5)
-
-axies_1.set_xticks(major_ticks)
-axies_1.set_xticks(minor_ticks, minor=True)
-
-# And a corresponding grid
-axies_1.grid(which='both')
-
-axies_1.grid(which='minor', alpha=1.0)
-axies_1.grid(which='major', alpha=1.0)
-
-axies_1.plot(np.arange(0, len(t_mag), 1)[:len(t_mag)], t_mag, label='normalized', color='red')
-graphic.showGraphic()
-
