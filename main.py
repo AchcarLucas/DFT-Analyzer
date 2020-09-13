@@ -66,7 +66,7 @@ def _main():
         # Procura todos os argumentos da frequência
         for arg in sys.argv[c_count:]:
             c_count += 1
-            if(arg != ';'):
+            if(arg != '-'):
                 frequencies.append(float(arg))
                 continue
             break
@@ -74,7 +74,7 @@ def _main():
         # Procura todos os argumentos da magnetudes
         for arg in sys.argv[c_count:]:
             c_count += 1
-            if(arg != ';'):
+            if(arg != '-'):
                 magnetudes.append(float(arg))
                 continue
             break
@@ -135,16 +135,21 @@ def _main():
 
         out_data = dft.DFT(signal.data, signal.sample_rate, interval_analyzer)
 
+        '''
+            ------------------------------- Análise de Frequência -------------------------------------
+        '''
+
         # Normaliza a magnetude
         mag = [v._mag for v in out_data]
 
         # Adiciona o gráfico com suas legendas
-        axies_1 = graphic.getAxiesData('DFT', 'Frequência (Hz)', 'Magnetude', [10, 6])
+        axies_1 = graphic.getAxiesData('DFT Analyzer', 'Frequência (Hz)', 'Magnetude', [10, 6])
 
         # Configuração dos eixos (exibição)
         major_ticks = np.arange(0, interval_analyzer[1], np.ceil(interval_analyzer[1]*(1 / interval_analyzer[1])))
         minor_ticks = np.arange(0, interval_analyzer[1], np.ceil(interval_analyzer[1]*(1 / interval_analyzer[1])))
 
+        # Exibe os valores limites superiores e inferiores
         axies_1.set_xticks(major_ticks, minor=True)
         axies_1.set_xticks(minor_ticks, minor=True)
 
@@ -161,6 +166,51 @@ def _main():
         # Exibe as linhas verticais das frequências
         for i in range(0, int(len(mag))):
             axies_1.vlines(i + interval_analyzer[0], 0, mag[i], lw=2, color=color)
+
+        '''
+            --------------------------------------------------------------------------------
+        '''
+
+        '''
+            ------------------------------- Análise de Fase -------------------------------------
+        '''
+
+        # Gera a list de fases
+        phases = [v._phase for v in out_data]
+        
+        # Normaliza a fase
+        for i in range(0, len(phases)):
+            if(phases[i] > 0.1):
+                phases[i] = 180 - (phases[i] * (180 / np.pi))
+
+        # Adiciona o gráfico com suas legendas
+        axies_2 = graphic.getAxiesData('Phase Analyzer', 'Frequências (Hz)', 'Fases (º)', [10, 6])
+
+        # Configuração dos eixos (exibição)
+        major_ticks = np.arange(0, interval_analyzer[1], np.ceil(interval_analyzer[1]*(1 / interval_analyzer[1])))
+        minor_ticks = np.arange(0, interval_analyzer[1], np.ceil(interval_analyzer[1]*(1 / interval_analyzer[1])))
+
+        # Exibe os valores limites superiores e inferiores
+        axies_2.set_xticks(major_ticks, minor=True)
+        axies_2.set_xticks(minor_ticks, minor=True)
+
+        # Limita os eixos para exibir até a última frequência
+        axies_2.set_xlim(interval_analyzer[0], interval_analyzer[1])
+        axies_2.set_ylim(0, max(phases) + 1)
+
+        # Configura o Grid
+        axies_2.grid(which='both')
+        
+        axies_2.grid(which='minor', alpha=1.0)
+        axies_2.grid(which='major', alpha=1.0)
+
+        # Exibe as linhas verticais das fases
+        for i in range(0, int(len(phases))):
+            axies_2.vlines(i + interval_analyzer[0], 0, phases[i], lw=2, color=color)
+
+        '''
+            --------------------------------------------------------------------------------
+        '''
             
         graphic.showGraphic()
 
