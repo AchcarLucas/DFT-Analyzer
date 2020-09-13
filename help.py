@@ -68,12 +68,10 @@ def c_help():
     print(f'  Ex: signal-data ./data/test.data blue 0.0 0.005')
     print(f'   O comando acima exibe a onda em cor azul com a exibição do gráfico em 0.0 até 0.005 (Zoom)')
     print(f'-----------------------------------------------------------------')
-    print(f'arg wav-data [nome-wav] [nome-arquivo-data] [start_time] [end_time]')
+    print(f'arg wav-data [nome-wav] [nome-arquivo-data]')
     print(f'  Essa opção converte um arquivo wav em um arquivo-data para posterior análise')
-    print(f'  [start_time] e [end_time] são opcionais, padrão start_time = 0 e end_time = 1')
-    print(f'  Ex: wav-data ./wav/440.wav ./data/test.data 0.0 5.0')
-    print(f'   O comando acima converte o arquivo wav em um arquivo de dados com duração')
-    print(f'   de 0.0 segundo até 5.0 segundos')
+    print(f'  Ex: wav-data ./wav/440.wav ./data/test.data')
+    print(f'   O comando acima converte o arquivo wav em um arquivo de dados')
     print(f'-----------------------------------------------------------------')
 
 '''
