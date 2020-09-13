@@ -141,6 +141,39 @@ def _main():
             print(f'Para mais informações use o argumento help')
             print(f'----------------------------------------------------------------')
             return
+    # Wav Data
+    elif(c_index == 4):
+        # Verifica se foi digitado o nome do arquivo wav no argumento
+        try:
+            wav_file_name = sys.argv[2]
+        except:
+            print(f'[nome-wav] é obrigatório')
+            return
+
+        # Verifica se foi digitado o nome do arquivo data no argumento
+        try:
+            file_name = sys.argv[3]
+        except:
+            print(f'[nome-arquivo-data] é obrigatório')
+            return
+
+        # Verifica se foi digitado o inicio do tempo de análise
+        try:
+            s_time_analysis = float(sys.argv[4])
+        except:
+            s_time_analysis = 0.0f
+
+        # Verifica se foi digitado o final do tempo de análise
+        try:
+            e_time_analysis = float(sys.argv[5])
+        except:
+            e_time_analysis = 1.0
+
+        if(createSignalFromWav(wav_file_name, file_name, s_time_analysis, e_time_analysis)):
+            print(f'Sinal gerado com sucesso, o arquivo foi gerado em {file_name}')
+        else:
+            print(f'Desculpe, não foi possível gerar o sinal, verifique o comando novamente')
+            
     else:
         help.inv_args(sys.argv[1])
 

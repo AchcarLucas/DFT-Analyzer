@@ -153,5 +153,3 @@ def createSignalFromWav(file_wav_name, file_data_name, s_time_analysis = 0.0, e_
         return False
 
 print(f'Generator Module Version: {_version()}')
-
-createSignalFromWav('./tone/1kHz_44100Hz_16bit_05sec.wav', './tone/1kHz_44100Hz_16bit_05sec.data', 0.0, 5.0)
