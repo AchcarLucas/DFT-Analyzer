@@ -9,7 +9,9 @@ import license
 import generator as gen
 import command as cmd
 import help
+import dft
 import graphic
+
 import numpy as np
 
 '''
@@ -56,7 +58,7 @@ def _main():
             return
 
         frequencies = []
-        magnetudes = []
+        magnetudes = [5, 6, 3]
         phases = []
 
         # Já foram 4 argumentos, falta o resto
@@ -187,3 +189,31 @@ def _main():
     Inicializa o Programa
 '''
 _main()
+
+signal = gen.data.loadData('./data/test.data')
+out_data = dft.DFT(signal.data, signal.sample_rate)
+
+mag = [(v._mag / signal.duration)*(100 / signal.sample_rate)*(0.01)*2 for v in out_data]
+
+t_mag = []
+for n in range(0, int(len(mag) / 2)):
+    t_mag.append(mag[n])
+
+axies_1 = graphic.getAxiesData('DFT', 'Frequência (Hz)', 'Magnetude', [10, 6])
+
+# Major ticks every 20, minor ticks every 5
+major_ticks = np.arange(0, signal.sample_rate, 5)
+minor_ticks = np.arange(0, signal.sample_rate, 5)
+
+axies_1.set_xticks(major_ticks)
+axies_1.set_xticks(minor_ticks, minor=True)
+
+# And a corresponding grid
+axies_1.grid(which='both')
+
+axies_1.grid(which='minor', alpha=1.0)
+axies_1.grid(which='major', alpha=1.0)
+
+axies_1.plot(np.arange(0, len(t_mag), 1)[:len(t_mag)], t_mag, label='normalized', color='red')
+graphic.showGraphic()
+
