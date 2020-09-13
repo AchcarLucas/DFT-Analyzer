@@ -65,8 +65,7 @@ class SignalGenerator(object):
         False -> Error
 '''
 def signalGenerator(file_name, signalGen):
-
-    #try:
+    try:
         # List com os dados para serem salvos
         DataGenerator = []
 
@@ -102,8 +101,8 @@ def signalGenerator(file_name, signalGen):
         data.saveData(file_name, dataSignal)
         
         return True
-    #except:
-        #return False
+    except:
+        return False
 
 print(f'Generator Module Version: {_version()}')
     
