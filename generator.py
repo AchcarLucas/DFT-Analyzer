@@ -5,6 +5,8 @@
 import wave
 import math
 import data
+import numpy
+import struct
 
 '''
     Versão do Arquivo generador.py
@@ -104,5 +106,52 @@ def signalGenerator(file_name, signalGen):
     except:
         return False
 
+'''
+    Gerador de Sinais a partir de um arquivo wav
+    Function: createSignalFromWav
+    Arg:
+        file_wav_name: nome do arquivo wave
+        file_data_name: nome do arquivo onde será salvo
+        s_time_analysis: tempo inicial do áudio
+        e_time_analysis: tempo final do áudio
+    Return:
+        True -> Sucess
+        False -> Error
+'''
+def createSignalFromWav(file_wav_name, file_data_name, s_time_analysis = 0.0, e_time_analysis = 1.0):
+    try:
+        with wave.open(file_wav_name, mode='rb') as wav:
+            sample_rate = wav.getframerate()
+            n_frame = wav.getnframes()
+
+            duration = 1.0
+            
+            # Verifica se o tempo de análise é maior que a duração do áudio, se for, mantém a duração do áudio como padrão
+            # Verifica se o tempo informado não é negativo, se for, padrão (0 até 1)
+            if((e_time_analysis - s_time_analysis) > (n_frame / sample_rate) or (e_time_analysis - s_time_analysis) <= 0):
+                e_time_analysis = 1.0
+                s_time_analysis = 0.0
+
+                
+            duration = e_time_analysis - s_time_analysis
+
+            DataGenerator = []
+
+            print(f'Tempo de Análise: [{s_time_analysis}] até [{e_time_analysis}]')
+            print(f'Dados de Análise: [{int(sample_rate*s_time_analysis)}] até [{int(sample_rate*e_time_analysis)}]')
+            
+            # Pega apenas os frames que desejo (sample_rate*duration), por padrão é 1 segundo de análise
+            for c_next in range(int(sample_rate*s_time_analysis), int(sample_rate*e_time_analysis)):
+                wav_data = wav.readframes(1)
+                DataGenerator.append(float(wav_data[0] / 255.0))
+
+        # Cria nosso sinal e salva em um file
+        dataSignal = DataSignal(sample_rate, duration, len(DataGenerator), DataGenerator)
+        data.saveData(file_data_name, dataSignal)
+        return True
+    except:
+        return False
+
 print(f'Generator Module Version: {_version()}')
-    
+
+createSignalFromWav('./tone/1kHz_44100Hz_16bit_05sec.wav', './tone/1kHz_44100Hz_16bit_05sec.data', 0.0, 5.0)
