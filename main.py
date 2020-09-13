@@ -145,7 +145,7 @@ def _main():
         # Adiciona o gráfico com suas legendas
         axies_1 = graphic.getAxiesData('DFT Analyzer', 'Frequência (Hz)', 'Magnetude', [10, 6])
 
-        max_value_mag = max(mag) + 5;
+        max_value_mag = max(mag) + 1;
 
         # Configuração dos eixos (exibição)
         x_major_ticks = np.arange(0, interval_analyzer[1], np.ceil(interval_analyzer[1]*(1 / interval_analyzer[1])))
