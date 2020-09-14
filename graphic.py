@@ -25,24 +25,24 @@ def _version():
     return '0.0.1'
 
 '''
-    Essa função cria um axies para ser plotado um gráfico
-    Function: getAxiesData
+    Essa função cria um axe para ser plotado um gráfico
+    Function: getAxeData
     Args:
         title: Titulo do gráfico
         x_label: Significado do dado no eixo x
         y_label: Significado do dado no eixo y
         size_x_y: List [largura, altura] do gráfico
     Return:
-        Axies (Janela do Gráfico)
+        Axe (Janela do Gráfico)
 '''
 def getAxeData(title, x_label, y_label, size_x_y):
-    figure, (axies) = plot.subplots(1, 1, figsize=(size_x_y[0],size_x_y[1]))
+    figure, (axe) = plot.subplots(1, 1, figsize=(size_x_y[0],size_x_y[1]))
 
-    axies.set_xlabel(x_label)
-    axies.set_ylabel(y_label)
-    axies.set_title(title)
+    axe.set_xlabel(x_label)
+    axe.set_ylabel(y_label)
+    axe.set_title(title)
     
-    return axies
+    return axe
 
 '''
     Função para desenhar os dados de uma onda complexa
@@ -54,14 +54,14 @@ def getAxeData(title, x_label, y_label, size_x_y):
         alpha: Transparência da caixa de texto
         horizontal_align: Alinhamento horizontal do texto
         vertical_align: Alinhamento vertical do texto
-        axies: Axies do matplot
+        axe: Axe do matplot
     Return:
         None 
 '''
-def drawText(x, y, text, axies, color='black', alpha=0.0, horizontal_align='center', vertical_align='center'):
-    axies.text(x,  y, text, bbox=dict(facecolor=color, alpha=alpha),
+def drawText(x, y, text, axe, color='black', alpha=0.0, horizontal_align='center', vertical_align='center'):
+    axe.text(x,  y, text, bbox=dict(facecolor=color, alpha=alpha),
                  horizontalalignment=horizontal_align, verticalalignment=vertical_align,
-                 transform=axies.transAxes)
+                 transform=axe.transAxes)
 
 '''
     Função que exibe todos os gráficos adicionados
