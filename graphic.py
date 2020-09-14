@@ -35,7 +35,7 @@ def _version():
     Return:
         Axies (Janela do Gráfico)
 '''
-def getAxiesData(title, x_label, y_label, size_x_y):
+def getAxeData(title, x_label, y_label, size_x_y):
     figure, (axies) = plot.subplots(1, 1, figsize=(size_x_y[0],size_x_y[1]))
 
     axies.set_xlabel(x_label)

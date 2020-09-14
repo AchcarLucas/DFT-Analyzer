@@ -143,7 +143,7 @@ def _main():
         mag = [v._mag for v in out_data]
 
         # Adiciona o gráfico com suas legendas
-        axies_1 = graphic.getAxiesData('DFT Analyzer', 'Frequência (Hz)', 'Magnetude', [10, 6])
+        axe_1 = graphic.getAxeData('DFT Analyzer', 'Frequência (Hz)', 'Magnetude', [10, 6])
 
         max_value_mag = max(mag) + 1;
 
@@ -152,22 +152,22 @@ def _main():
         y_major_ticks = np.arange(0, max_value_mag, np.ceil(max_value_mag*(1 / max_value_mag)))
 
         # Exibe os valores limites superiores e inferiores
-        axies_1.set_xticks(x_major_ticks, minor=True)
-        axies_1.set_yticks(y_major_ticks, minor=True)
+        axe_1.set_xticks(x_major_ticks, minor=True)
+        axe_1.set_yticks(y_major_ticks, minor=True)
 
         # Limita os eixos para exibir até a última frequência
-        axies_1.set_xlim(interval_analyzer[0], interval_analyzer[1])
-        axies_1.set_ylim(0, max_value_mag)
+        axe_1.set_xlim(interval_analyzer[0], interval_analyzer[1])
+        axe_1.set_ylim(0, max_value_mag)
 
         # Configura o Grid
-        axies_1.grid(which='both')
+        axe_1.grid(which='both')
         
-        axies_1.grid(which='minor', alpha=1.0)
-        axies_1.grid(which='major', alpha=1.0)
+        axe_1.grid(which='minor', alpha=1.0)
+        axe_1.grid(which='major', alpha=1.0)
 
         # Exibe as linhas verticais das frequências
         for i in range(0, int(len(mag))):
-            axies_1.vlines(i + interval_analyzer[0], 0, mag[i], lw=2, color=color)
+            axe_1.vlines(i + interval_analyzer[0], 0, mag[i], lw=2, color=color)
 
         '''
             --------------------------------------------------------------------------------
@@ -186,7 +186,7 @@ def _main():
                 phases[i] = 180 - (phases[i] * (180 / np.pi))
 
         # Adiciona o gráfico com suas legendas
-        axies_2 = graphic.getAxiesData('Phase Analyzer', 'Frequências (Hz)', 'Fases (º)', [10, 6])
+        axe_2 = graphic.getAxeData('Phase Analyzer', 'Frequências (Hz)', 'Fases (º)', [10, 6])
 
         max_value_phase = max(phases) + 5
 
@@ -195,22 +195,22 @@ def _main():
         y_major_ticks = np.arange(0, max_value_phase, np.ceil(max_value_phase*(1 / max_value_phase)))
 
         # Exibe os valores limites superiores e inferiores
-        axies_2.set_xticks(x_major_ticks, minor=True)
-        axies_2.set_yticks(y_major_ticks, minor=True)
+        axe_2.set_xticks(x_major_ticks, minor=True)
+        axe_2.set_yticks(y_major_ticks, minor=True)
 
         # Limita os eixos para exibir até a última frequência
-        axies_2.set_xlim(interval_analyzer[0], interval_analyzer[1])
-        axies_2.set_ylim(0, max_value_phase)
+        axe_2.set_xlim(interval_analyzer[0], interval_analyzer[1])
+        axe_2.set_ylim(0, max_value_phase)
 
         # Configura o Grid
-        axies_2.grid(which='both')
+        axe_2.grid(which='both')
         
-        axies_2.grid(which='minor', alpha=1.0)
-        axies_2.grid(which='major', alpha=1.0)
+        axe_2.grid(which='minor', alpha=1.0)
+        axe_2.grid(which='major', alpha=1.0)
 
         # Exibe as linhas verticais das fases
         for i in range(0, int(len(phases))):
-            axies_2.vlines(i + interval_analyzer[0], 0, phases[i], lw=2, color=color)
+            axe_2.vlines(i + interval_analyzer[0], 0, phases[i], lw=2, color=color)
 
         '''
             --------------------------------------------------------------------------------
