@@ -247,18 +247,18 @@ def _main():
                 time_limit_display[1] = signal.duration
 
             # Cria o Axies (gráfico)
-            axies_1 = graphic.getAxiesData('Wave Signal', 'Time (s)', 'Amplitude', [10, 6])
+            axe_1 = graphic.getAxeData('Wave Signal', 'Time (s)', 'Amplitude', [10, 6])
 
             # Plota os textos referentes ao sample_rate, duration e total_data
-            graphic.drawText(0.8, 0.9, f'SAMPLE RATE {signal.sample_rate}', axies_1, 'blue', 0.4);
-            graphic.drawText(0.8, 0.83, f'DURATION {signal.duration} (s)', axies_1, 'red', 0.4);
-            graphic.drawText(0.8, 0.76, f'TOTAL DATA(S) {len(signal.data)}', axies_1, 'green', 0.4);
+            graphic.drawText(0.8, 0.9, f'SAMPLE RATE {signal.sample_rate}', axe_1, 'blue', 0.4);
+            graphic.drawText(0.8, 0.83, f'DURATION {signal.duration} (s)', axe_1, 'red', 0.4);
+            graphic.drawText(0.8, 0.76, f'TOTAL DATA(S) {len(signal.data)}', axe_1, 'green', 0.4);
 
             # Limita o gráfico entre 0 até duration (segundos)
-            axies_1.set_xlim(time_limit_display[0], time_limit_display[1])
+            axe_1.set_xlim(time_limit_display[0], time_limit_display[1])
 
             # Manda para o plot exibir a wave no intervalo dado (normalizado)
-            axies_1.plot(np.arange(0, signal.duration, 1 / (signal.sample_rate))[:len(signal.data)], signal.data, label='normalized', color=arg_color)
+            axe_1.plot(np.arange(0, signal.duration, 1 / (signal.sample_rate))[:len(signal.data)], signal.data, label='normalized', color=arg_color)
 
             # Exibe todos os gráficos
             graphic.showGraphic()
