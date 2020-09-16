@@ -28,6 +28,7 @@ Para a criação de uma onda complexa foi utilizado a seguinte fórmula.
 - `A1, A2 ... ,An` representando os elementos da amplitude
 - `F1, F2 ... ,Fn` representando as frequências
 - `P1, P2 ... ,Pn` representando as fases
+- FS representa `1 / (taxa_de_amostragem)` 2*PI*F*FS faz com que a taxa de amostragem seja equivalente a 1 ciclo. ou seja, a cada ciclo o sinal se repete a uma taxa de amostragem fixa.
 
 Somando todas as componentes teremos uma onda complexa.
 
