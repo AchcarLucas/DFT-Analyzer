@@ -137,7 +137,7 @@ Veja a imagem a seguir para exemplo:
 
 A saída para o comando de exemplo abaixo será:
 
-```diff
+```
 python main.py signal-data .\data\test1.data blue 0.0 2.0
 ```
 
@@ -147,9 +147,54 @@ python main.py signal-data .\data\test1.data blue 0.0 2.0
 
 Já se não for informado os tempos inicias e finais como no exemplo abaixo, a saída será:
 
-```diff
+```
 python main.py signal-data .\data\test1.data red
 ```
 
 ![WaveSignal](https://github.com/AchcarLucas/DFT-Analyzer/blob/master/img/saida-no-time.png?raw=true)
 
+O comando `wav-data` gera um arquivo de dados a partir de um arquivo wav. Utilize o comando como a seguir:
+
+```
+main.py wav-data .\tone\10kHz_44100Hz_16bit_05sec.wav ./data/10kHz_44100Hz_16bit_05sec.data
+```
+
+- O primeiro argumento `.\tone\100Hz_44100Hz_16bit_05sec.wav.wav` informa qual arquivo wav os dados serão extraidos.
+- O segundo argumento `./data/100Hz_44100Hz_16bit_05sec.wav.data` será o nome do arquivo que os dados serão salvos.
+
+```diff
+- (OBS: Os dois argumentos são necessários e devem ser preenchidos corretamente)
+```
+
+`.\tone\` é o nome da pasta onde se localiza o wav.
+`./data/`é o nome da pasta onde deverá ser salvo o arquivo data.
+
+Seu comando genérico é representado a seguir:
+
+```
+wav-data [nome-wav] [nome-arquivo-data]
+```
+
+O comando `signal-analyzer` é o que faz a análise do sinal, segue o exemplo abaixo para a sua utilização:
+
+```
+python main.py signal-analyzer .\data\test.data green 0 50
+```
+
+O primeiro argumento `.\data\test.data` é a localização do arquivo de dados, seja ele gerado pelo comando `generator` ou pelo comando `wav`.
+O segundo argumento é a cor exibida pelo gráfico.
+O quarto e o quinto argumento são as frequências de análise inicial e final, no exemplo, será análisado as frequências de 0 Hz até 50 Hz.
+
+Veja a figura a seguir gerado pelo comando citado:
+
+![Wave-Analyzer](https://github.com/AchcarLucas/DFT-Analyzer/blob/master/img/0-50.png?raw=true)
+
+Seu comando genêrico pode ser descrito abaixo:
+
+```
+signal-analyzer [nome-arquivo-data] [cor] [faixa-frequência-inferior] [faixa-frequência-superior]
+```
+
+```diff
+- (OBS: Os argumentos `[cor]`, `[faixa-frequência-inferior]` e `[faixa-frequência-superior]`são opcionais, por padrão, a cor inicial é vermelha, a frequência de análise inicial e 0 Hz e a frequência de análise final é 100 Hz)
+```
