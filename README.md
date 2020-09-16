@@ -191,7 +191,7 @@ python main.py signal-analyzer .\data\test.data green 0 50
 
 - O primeiro argumento `.\data\test.data` é a localização do arquivo de dados, seja ele gerado pelo comando `generator` ou pelo comando `wav`.
 - O segundo argumento é a cor exibida pelo gráfico.
-- O quarto e o quinto argumento são as frequências de análise inicial e final, no exemplo, será análisado as frequências de 0 Hz até 50 Hz.
+- O terceiro e o quarto argumento são as frequências de análise inicial e final, no exemplo, será análisado as frequências de 0 Hz até 50 Hz.
 
 Veja a figura a seguir gerado pelo comando citado:
 
