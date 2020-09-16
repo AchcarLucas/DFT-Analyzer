@@ -131,7 +131,7 @@ Sendo, o primero `FF` Vermelho o `00` Verde e `00` Azul formando o hex `#ff0000`
 - Exemplo 1
 
 Se um sinal, por exemplo, 10Khz for difícil visualização, reduzindo o tempo inicial e fínal o efeito será como um Zoom na onda.
-Esses argumetos podem ser pontos decimais, por exemplo, `0.1 0.5`, o comando anterior, exibiria uma onda no intervalo de tempo de 0.1 segundo até 0.5 segundos.
+Esses argumetos podem ser pontos decimais, por exemplo, `0.1 0.5`, o argumento anterior, exibiria uma onda no intervalo de tempo de 0.1 segundo até 0.5 segundos.
 
 Veja a imagem a seguir para exemplo:
 
