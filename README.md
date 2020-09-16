@@ -32,6 +32,10 @@ O Comando help, como o próprio nome diz, é uma ajuda para auxiliar nos comando
 python main.py help
 ```
 
+Exibição:
+
+![Help](https://github.com/AchcarLucas/DFT-Analyzer/blob/master/img/help.png?raw=true)
+
 ```diff
 - (OBS: O comando python main.py tem que ser digitado dentro da pasta que o programa está contido)
 ```
