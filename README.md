@@ -203,7 +203,7 @@ O comando `signal-analyzer` é o que faz a análise do sinal, segue o exemplo ab
 python main.py signal-analyzer .\data\test.data green 0 50
 ```
 
-- O primeiro argumento `.\data\test.data` é a localização do arquivo de dados, seja ele gerado pelo comando `generator` ou pelo comando `wav`.
+- O primeiro argumento `.\data\test.data` é a localização do arquivo de dados, seja ele gerado pelo comando `generator` ou pelo comando `wav-data`.
 - O segundo argumento é a cor exibida pelo gráfico.
 - O terceiro e o quarto argumento são as frequências de análise inicial e final, no exemplo, será análisado as frequências de 0 Hz até 50 Hz.
 
