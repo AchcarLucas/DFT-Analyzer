@@ -32,7 +32,7 @@ Para a criação de uma onda complexa foi utilizado a seguinte fórmula.
 
 Somando todas as componentes teremos uma onda complexa.
 
-O Software possui 4 comandos de argumentos de fácil utilização, são eles:
+O Software possui 5 comandos de argumentos de fácil utilização, são eles:
 
 ```
 help
