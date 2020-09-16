@@ -52,13 +52,13 @@ Seu comando genérico:
 python main.py generator [nome-arquivo] [taxa-de-amostragem] [duração] [frequências] - [magnetudes] - [fases]
 ```
 
-Sendo ``` - [magnetudes]``` e  ```[fase]``` opcionais.
+Sendo ```[magnetudes]``` e  ```[fase]``` opcionais.
 
 ```diff
 - (OBS: O `-` é obrigatório após a digitação das frequências e magnetudes)
 ```
 
-O primeiro argumento após o comando generator `./data/file-name.data` é o local onde será salvo e o nome do arquivo de dados (Nesse caso, será salvo na pasta `data` com o nome `file-name.data`). 
+O primeiro argumento após o comando `generator`, `./data/file-name.data` é o local onde será salvo e o nome do arquivo de dados (Nesse caso, será salvo na pasta `data` com o nome `file-name.data`). 
 O segundo argumento `1000` é a quantidade de amostras a cada ciclo.
 O terceiro argumento `5` é a quantidade de ciclos, se considerarmos uma amostra de 1000 e 5 ciclos, teremos um total de 5000 amostras, o cálculo da quantidade
 de amostras é dado por `amostras = segundos*(amostras/ciclo).`
