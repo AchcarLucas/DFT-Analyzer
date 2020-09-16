@@ -83,7 +83,7 @@ de amostras é dado por `amostras = segundos*(amostras/ciclo).`
 
 - O quarto argumento, podemos considerar como um único pacote (`1 5 8 10`), esses dados representam as frequências em Hz
 - O quinto pacote de argumentos após o `-` (`5 6 7 8`) são as amplitudes e corresponde a cada frequência (magnetude 5 corresponte a frequência 1 Hz, a magnetude 6 representa a frequência 5 Hz etc).
-- O sexto argumento após o `-` (`30 45 60`) são as fases em graus (`º`) respectivamente de cada frequência (30º da frequência 1 Hz, 45º da frequência 5 Hz). Observe que a frequência 10Hz não possui uma fase correspondente, com isso, podemos considera-la 0º.
+- O sexto argumento após o `-` (`30 45 60`) são as fases em graus (`º`) respectivamente de cada frequência (30º da frequência 1 Hz, 45º da frequência 5 Hz etc). Observe que a frequência 10Hz não possui uma fase correspondente, com isso, podemos considera-la 0º.
 
 ```diff
 - (OBS: a quantidade de amplitude e fases podem ser menor que a de frequência porém, as frequências que não possuir uma amplitude ou fase especifica terão como padrão: 1 de amplitude e 0º de fase. O argumento de amplitude e as fase são opcionais.)
