@@ -35,6 +35,7 @@ O Software possui 4 comandos de argumentos de fácil utilização, são eles:
 
 ```
 help
+generator
 signal-analyzer
 signal-data
 wav-data
