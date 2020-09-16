@@ -19,9 +19,9 @@ Somando todas as componentes teremos uma onda.
 
 Para gerar uma onda, utilize o seguinte comando:
 
-...
+```
 python main.py generator ./data/file-name.data 1000 5 1 5 8 10 - 5 6 7 8 - 30 45 60
-...
+```
 
 O primeiro argumento após o comando generator é o local onde será salvo o arquivo de dados. 
 O segundo argumento é a quantidade de amostras a cada ciclo.
@@ -39,3 +39,7 @@ O sexto argumento após o `-` (30 45 60) são as fases respectivamente de cada f
 ```diff
 - (OBS: a quantidade de amplitude e fases podem ser menor que a de frequência porém, as frequências que não possuir uma amplitude ou fase especifica terão como padrão: 1 de amplitude e 0º de fase.)
 ```
+
+Com os dados acima, teremos uma saída igual a essa:
+
+![WaveSignal](https://github.com/AchcarLucas/DFT-Analyzer/blob/master/img/WaveSignal.png?raw=true)
