@@ -52,7 +52,7 @@ Seu comando genérico:
 python main.py generator [nome-arquivo] [taxa-de-amostragem] [duração] [frequências] - [magnetudes] - [fases]
 ```
 
-Sendo ```diff - [magnetudes]` ``` e  ```diff - [fase]``` opcionais.
+Sendo ``` - [magnetudes]``` e  ```[fase]``` opcionais.
 
 ```diff
 - (OBS: O `-` é obrigatório após a digitação das frequências e magnetudes)
