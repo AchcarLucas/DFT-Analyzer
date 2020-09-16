@@ -12,6 +12,10 @@ Dependências:
 + import sys
 ```
 
+```diff
+! Requer Python 3.5 ou superior
+```
+
 # DFT-Analyzer
 Analisador de sinal com algoritmo DFT (Discrete Fourier Transform)
 
