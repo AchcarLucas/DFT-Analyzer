@@ -26,7 +26,7 @@ signal-data
 wav-data
 ```
 
-O Comando help, como o próprio nome diz, é um ajuda para auxiliar nos comandos básicos. Para utilizar, digite o seguinte comando:
+O Comando help, como o próprio nome diz, é uma ajuda para auxiliar nos comandos básicos. Para utilizar, digite o seguinte comando:
 
 ```
 python main.py help
@@ -51,10 +51,10 @@ python main.py generator [nome-arquivo] [taxa-de-amostragem] [duração] [frequ�
 Sendo ```diff - [magnetudes]` ``` e  ```diff - [fase]``` opcionais.
 
 ```diff
-- (OBS: O `-` é obrigatório após a frequência e magnetudes)
+- (OBS: O `-` é obrigatório após a digitação das frequências e magnetudes)
 ```
 
-O primeiro argumento após o comando generator `./data/file-name.data` é o local onde será salvo o arquivo de dados. 
+O primeiro argumento após o comando generator `./data/file-name.data` é o local onde será salvo e o nome do arquivo de dados (Nesse caso, será salvo na pasta `data` com o nome `file-name.data`). 
 O segundo argumento `1000` é a quantidade de amostras a cada ciclo.
 O terceiro argumento `5` é a quantidade de ciclos, se considerarmos uma amostra de 1000 e 5 ciclos, teremos um total de 5000 amostras, o cálculo da quantidade
 de amostras é dado por `amostras = segundos*(amostras/ciclo).`
@@ -64,14 +64,14 @@ de amostras é dado por `amostras = segundos*(amostras/ciclo).`
 ```
 
 O quarto argumento, podemos considerar como um único pacote (`1 5 8 10`), esses dados representam as frequências em Hz
-O quinto pacote de argumentos após o `-` (`5 6 7 8`) são as amplitudes e corresponde a cada frequência (magnetude 5 corresponte a frequência 1Hz, a magnetude 6 representa a frequência 5Hz).
-O sexto argumento após o `-` (`30 45 60`) são as fases em graus (`º`) respectivamente de cada frequência (30º da frequência 1Hz, 45º da frequência 5Hz). Observe que a frequência 10Hz não possui uma fase correspondente, com isso, podemos considera-la 0º.
+O quinto pacote de argumentos após o `-` (`5 6 7 8`) são as amplitudes e corresponde a cada frequência (magnetude 5 corresponte a frequência 1 Hz, a magnetude 6 representa a frequência 5 Hz etc).
+O sexto argumento após o `-` (`30 45 60`) são as fases em graus (`º`) respectivamente de cada frequência (30º da frequência 1 Hz, 45º da frequência 5 Hz). Observe que a frequência 10Hz não possui uma fase correspondente, com isso, podemos considera-la 0º.
 
 ```diff
-- (OBS: a quantidade de amplitude e fases podem ser menor que a de frequência porém, as frequências que não possuir uma amplitude ou fase especifica terão como padrão: 1 de amplitude e 0º de fase. O argumetno de amplitude e as fase são opcionais.)
+- (OBS: a quantidade de amplitude e fases podem ser menor que a de frequência porém, as frequências que não possuir uma amplitude ou fase especifica terão como padrão: 1 de amplitude e 0º de fase. O argumento de amplitude e as fase são opcionais.)
 ```
 
-Com os dados acima, teremos uma saída igual a essa:
+Com os dados acima, teremos uma saída como mostrado na figura abaixo:
 
 ![WaveSignal](https://github.com/AchcarLucas/DFT-Analyzer/blob/master/img/WaveSignal.png?raw=true)
 
@@ -82,3 +82,38 @@ Exemplo de utilização:
 ```
 python main.py signal-data .\data\test1.data blue 0 2
 ```
+
+Seu comando genérico:
+
+```
+python main.py signal-data [nome-arquivo-data] [cor] [tempo-inicial] [tempo-final]
+```
+
+```diff
+- (OBS: O argumento `cor`, `tempo-inicial` e `tempo-final` são opcionais.)
+```
+
+O argumento `cor` será a cor de exibição do gráfico. 
+
+Segue a tabela de cores para utilizar no argumento:
+
+```diff
+- blue
+red
++ green
+white
+black
+cyan
+magenta
+! yellow
+```
+
+A cor, se desejar, pode ser adicionado como Hex Decimal.
+
+Exemplo:
+
+```
+python main.py signal-analyzer ./data/test1.data '#ff0000' 0 101
+```
+
+Segundo FF (Red) 00 (Green) 00 (Blue
