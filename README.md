@@ -120,6 +120,10 @@ Segundo o primero `FF` Vermelho `00` Verde `00` Azul
 
 O terceiro e o quarto argumento `[tempo-inicial]` e  `[tempo-final]` representam o tempo inicial e final de análise.
 
+```diff
+- (OBS: O tempo inicial, se não for especificado, por padrão é 0.0, já o tempo final, por padrão é a duração que a onda possui)
+```
+
 - Exemplo 1
 
 Se um sinal, por exemplo, 10Khz for difícil visualização, reduzindo o tempo inicial e fínal o efeito será como um Zoom na onda.
