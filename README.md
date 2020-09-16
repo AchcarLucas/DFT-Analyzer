@@ -206,3 +206,11 @@ signal-analyzer [nome-arquivo-data] [cor] [faixa-frequência-inferior] [faixa-fr
 ```diff
 - (OBS: Os argumentos `[cor]`, `[faixa-frequência-inferior]` e `[faixa-frequência-superior]`são opcionais, por padrão, a cor inicial é vermelha, a frequência de análise inicial e 0 Hz e a frequência de análise final é 100 Hz)
 ```
+
+Além da frequência por magnetude, a análise do sinal também exibe a frequência por fase (º), veja as imagens a seguir:
+
+Análise do Sinal pela Magnetude (Hz/Mag)
+![DFT-Signal](https://github.com/AchcarLucas/DFT-Analyzer/blob/master/img/DFT_Signal.png?raw=true)
+
+Análise do Sinal pela Fase (Hz/º)
+![DFT-Signal](https://github.com/AchcarLucas/DFT-Analyzer/blob/master/img/PhaseSignal.png?raw=true)
