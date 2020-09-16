@@ -120,7 +120,7 @@ Exemplo:
 python main.py signal-analyzer ./data/test1.data '#ff0000' 0 101
 ```
 
-Segundo o primero `FF` Vermelho `00` Verde `00` Azul
+Sendo, o primero `FF` Vermelho o `00` Verde e `00` Azul formando o hex `#ff0000`.
 
 - O segundo e o terceiro argumento `[tempo-inicial]` e  `[tempo-final]` representam o tempo inicial e final de análise.
 
