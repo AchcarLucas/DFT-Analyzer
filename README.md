@@ -1,3 +1,17 @@
+Dependências: 
+
+```diff
++ import pickle
++ import math
++ import wave
++ import data
++ import numpy
++ import struct
++ import numpy
++ import matplotlib
++ import sys
+```
+
 # DFT-Analyzer
 Analisador de sinal com algoritmo DFT (Discrete Fourier Transform)
 
