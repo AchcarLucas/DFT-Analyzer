@@ -11,11 +11,30 @@ Para a criação de uma onda complexa foi utilizado a seguinte fórmula.
 
 ![Fórmula Sum Sin](https://github.com/AchcarLucas/DFT-Analyzer/blob/master/img/sum_sin.png?raw=true)
 
-A1, A2 ... An representando os elementos da amplitude
-F1, F2 ... Fn representando as frequências
-P1, P2 ... Pn representando as fases
+- `A1, A2 ... ,An` representando os elementos da amplitude
+- `F1, F2 ... ,Fn` representando as frequências
+- `P1, P2 ... ,Pn` representando as fases
 
-Somando todas as componentes teremos uma onda.
+Somando todas as componentes teremos uma onda complexa.
+
+O Software possui 4 comandos de argumentos de fácil utilização, são eles:
+
+```
+help
+signal-analyzer
+signal-data
+wav-data
+```
+
+O Comando help, como o próprio nome diz, é um ajuda para auxiliar nos comandos básicos. Para utilizar, digite o seguinte comando:
+
+```
+python main.py help
+```
+
+```diff
+- (OBS: O comando python main.py tem que ser digitado dentro da pasta que o programa está contido)
+```
 
 Para gerar uma onda, utilize o seguinte comando:
 
@@ -37,7 +56,7 @@ O quinto pacote de argumentos após o `-` (5 6 7 8) são as amplitudes correspon
 O sexto argumento após o `-` (30 45 60) são as fases respectivamente de cada frequência.
 
 ```diff
-- (OBS: a quantidade de amplitude e fases podem ser menor que a de frequência porém, as frequências que não possuir uma amplitude ou fase especifica terão como padrão: 1 de amplitude e 0º de fase.)
+- (OBS: a quantidade de amplitude e fases podem ser menor que a de frequência porém, as frequências que não possuir uma amplitude ou fase especifica terão como padrão: 1 de amplitude e 0º de fase. O argumetno de amplitude e as fase são opcionais.)
 ```
 
 Com os dados acima, teremos uma saída igual a essa:
