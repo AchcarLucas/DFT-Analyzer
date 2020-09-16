@@ -130,4 +130,12 @@ Veja a imagem a seguir para exemplo:
 - (OBS: Os dois argumentos são opcionais como citado anteriormente)
 ```
 
-A saída para esse comando
+A saída para o comando de exemplo abaixo será:
+
+```diff
+python main.py signal-data .\data\test1.data blue 0.0 2.0
+```
+
+![WaveSignal](https://github.com/AchcarLucas/DFT-Analyzer/blob/master/img/WaveSignal.png?raw=true)
+
+
