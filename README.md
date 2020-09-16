@@ -58,18 +58,18 @@ Sendo ```[magnetudes]``` e  ```[fase]``` opcionais.
 - (OBS: O `-` é obrigatório após a digitação das frequências e magnetudes)
 ```
 
-O primeiro argumento após o comando `generator`, `./data/file-name.data` é o local onde será salvo e o nome do arquivo de dados (Nesse caso, será salvo na pasta `data` com o nome `file-name.data`). 
-O segundo argumento `1000` é a quantidade de amostras a cada ciclo.
-O terceiro argumento `5` é a quantidade de ciclos, se considerarmos uma amostra de 1000 e 5 ciclos, teremos um total de 5000 amostras, o cálculo da quantidade
+- O primeiro argumento após o comando `generator`, `./data/file-name.data` é o local onde será salvo e o nome do arquivo de dados (Nesse caso, será salvo na pasta `data` com o nome `file-name.data`). 
+- O segundo argumento `1000` é a quantidade de amostras a cada ciclo.
+- O terceiro argumento `5` é a quantidade de ciclos, se considerarmos uma amostra de 1000 e 5 ciclos, teremos um total de 5000 amostras, o cálculo da quantidade
 de amostras é dado por `amostras = segundos*(amostras/ciclo).`
 
 ```diff
 - OBS: O programa considera cada ciclo como 1 segundo.
 ```
 
-O quarto argumento, podemos considerar como um único pacote (`1 5 8 10`), esses dados representam as frequências em Hz
-O quinto pacote de argumentos após o `-` (`5 6 7 8`) são as amplitudes e corresponde a cada frequência (magnetude 5 corresponte a frequência 1 Hz, a magnetude 6 representa a frequência 5 Hz etc).
-O sexto argumento após o `-` (`30 45 60`) são as fases em graus (`º`) respectivamente de cada frequência (30º da frequência 1 Hz, 45º da frequência 5 Hz). Observe que a frequência 10Hz não possui uma fase correspondente, com isso, podemos considera-la 0º.
+- O quarto argumento, podemos considerar como um único pacote (`1 5 8 10`), esses dados representam as frequências em Hz
+- O quinto pacote de argumentos após o `-` (`5 6 7 8`) são as amplitudes e corresponde a cada frequência (magnetude 5 corresponte a frequência 1 Hz, a magnetude 6 representa a frequência 5 Hz etc).
+- O sexto argumento após o `-` (`30 45 60`) são as fases em graus (`º`) respectivamente de cada frequência (30º da frequência 1 Hz, 45º da frequência 5 Hz). Observe que a frequência 10Hz não possui uma fase correspondente, com isso, podemos considera-la 0º.
 
 ```diff
 - (OBS: a quantidade de amplitude e fases podem ser menor que a de frequência porém, as frequências que não possuir uma amplitude ou fase especifica terão como padrão: 1 de amplitude e 0º de fase. O argumento de amplitude e as fase são opcionais.)
@@ -97,7 +97,7 @@ python main.py signal-data [nome-arquivo-data] [cor] [tempo-inicial] [tempo-fina
 - (OBS: O argumento `cor`, `tempo-inicial` e `tempo-final` são opcionais.)
 ```
 
-O argumento `cor` será a cor de exibição do gráfico. 
+- O primeiro argumento `cor` será a cor de exibição do gráfico. 
 
 Segue a tabela de cores para utilizar no argumento:
 
@@ -122,7 +122,7 @@ python main.py signal-analyzer ./data/test1.data '#ff0000' 0 101
 
 Segundo o primero `FF` Vermelho `00` Verde `00` Azul
 
-O terceiro e o quarto argumento `[tempo-inicial]` e  `[tempo-final]` representam o tempo inicial e final de análise.
+- O segundo e o terceiro argumento `[tempo-inicial]` e  `[tempo-final]` representam o tempo inicial e final de análise.
 
 ```diff
 - (OBS: O tempo inicial, se não for especificado, por padrão é 0.0, já o tempo final, por padrão é a duração que a onda possui)
@@ -189,9 +189,9 @@ O comando `signal-analyzer` é o que faz a análise do sinal, segue o exemplo ab
 python main.py signal-analyzer .\data\test.data green 0 50
 ```
 
-O primeiro argumento `.\data\test.data` é a localização do arquivo de dados, seja ele gerado pelo comando `generator` ou pelo comando `wav`.
-O segundo argumento é a cor exibida pelo gráfico.
-O quarto e o quinto argumento são as frequências de análise inicial e final, no exemplo, será análisado as frequências de 0 Hz até 50 Hz.
+- O primeiro argumento `.\data\test.data` é a localização do arquivo de dados, seja ele gerado pelo comando `generator` ou pelo comando `wav`.
+- O segundo argumento é a cor exibida pelo gráfico.
+- O quarto e o quinto argumento são as frequências de análise inicial e final, no exemplo, será análisado as frequências de 0 Hz até 50 Hz.
 
 Veja a figura a seguir gerado pelo comando citado:
 
