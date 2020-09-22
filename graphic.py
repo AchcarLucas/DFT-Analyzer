@@ -25,24 +25,19 @@ def _version():
     return '0.0.1'
 
 '''
-    Essa função cria um axe para ser plotado um gráfico
-    Function: getAxeData
+    Cria a figure e os axes (subplot) para a criação dos gráficos
+    Function: createSubPlotData
     Args:
-        title: Titulo do gráfico
-        x_label: Significado do dado no eixo x
-        y_label: Significado do dado no eixo y
         size_x_y: List [largura, altura] do gráfico
+        row: Quantidades de gráficos em cada linha
+        column: Quantidades de gráficos em cada coluna
+        sharex: Compartilhar dados do eixo X
+        sharey: Compartilhar dados do eixo Y
     Return:
-        Axe (Janela do Gráfico)
+        Instância da Figure e Axes
 '''
-def getAxeData(title, x_label, y_label, size_x_y):
-    figure, (axe) = plot.subplots(1, 1, figsize=(size_x_y[0],size_x_y[1]))
-
-    axe.set_xlabel(x_label)
-    axe.set_ylabel(y_label)
-    axe.set_title(title)
-    
-    return axe
+def createSubPlotData(size_x_y, row=1, column=1, sharex=False, sharey=False):
+    return plot.subplots(row, column, figsize=(size_x_y[0],size_x_y[1]), sharex=sharex, sharey=sharey)
 
 '''
     Função para desenhar os dados de uma onda complexa

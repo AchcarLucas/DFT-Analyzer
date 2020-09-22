@@ -143,8 +143,21 @@ def _main():
         mag = [v._mag for v in out_data]
 
         # Adiciona o gráfico com suas legendas
-        axe_1 = graphic.getAxeData('DFT Analyzer', 'Frequência (Hz)', 'Magnetude', [10, 6])
+        fig, axe = graphic.createSubPlotData([10, 6], 2, 1)
 
+        axe_1 = axe[0]
+        axe_2 = axe[1]
+
+        axe_1.set_title('DFT Analyzer')
+        axe_1.set_xlabel('Frequência (Hz)')
+        axe_1.set_ylabel('Magnetude')
+
+        axe_2.set_title('Phase Analyzer')
+        axe_2.set_xlabel('Frequência (Hz)')
+        axe_2.set_ylabel('Fases (º)')
+
+        fig.tight_layout()
+    
         max_value_mag = max(mag) + 1;
 
         # Configuração dos eixos (exibição)
@@ -186,7 +199,6 @@ def _main():
                 phases[i] = 180 - (phases[i] * (180 / np.pi))
 
         # Adiciona o gráfico com suas legendas
-        axe_2 = graphic.getAxeData('Phase Analyzer', 'Frequências (Hz)', 'Fases (º)', [10, 6])
 
         max_value_phase = max(phases) + 5
 
@@ -220,34 +232,48 @@ def _main():
 
     # Signal Data
     elif(c_index == 3):
+        # Verifica se foi digitado o nome do arquivo de dados no argumento
         try:
             file_name = sys.argv[2]
+        except:
+            print(f'[nome-arquivo] é obrigatório')
+            return
+            
 
-            # Verifica se o argumento da cor existe, se não, mantém padrão
-            try:
-                arg_color = sys.argv[3]
-            except:
-                arg_color = 'red'
+        # Verifica se o argumento da cor existe, se não, mantém padrão
+        try:
+            arg_color = sys.argv[3]
+        except:
+            arg_color = 'red'
 
-            time_limit_display = [0, 0]
+        time_limit_display = [0, 0]
 
-            # Verifica se o argumento do limite de tempo inferior existe, se não, mantém padrão
-            try:
-                time_limit_display[0] = float(sys.argv[4])
-            except:
-                time_limit_display[0] = 0.0
+        # Verifica se o argumento do limite de tempo inferior existe, se não, mantém padrão
+        try:
+            time_limit_display[0] = float(sys.argv[4])
+        except:
+            time_limit_display[0] = 0.0
                 
-            # Le o arquivo indicado, faz a unserialized para ter acesso aos dados
-            signal = gen.data.loadData(file_name)
+        # Le o arquivo indicado, faz a unserialized para ter acesso aos dados
+        signal = gen.data.loadData(file_name)
 
-            # Verifica se o argumento do limite de tempo superior existe, se não, mantém padrão
-            try:
-                time_limit_display[1] = float(sys.argv[5])
-            except:
-                time_limit_display[1] = signal.duration
+        # Verifica se o argumento do limite de tempo superior existe, se não, mantém padrão
+        try:
+            time_limit_display[1] = float(sys.argv[5])
+        except:
+            time_limit_display[1] = signal.duration
 
+        try:
             # Cria o Axies (gráfico)
-            axe_1 = graphic.getAxeData('Wave Signal', 'Time (s)', 'Amplitude', [10, 6])
+            fig, axe = graphic.createSubPlotData([10, 6])
+
+            axe_1 = axe
+
+            axe_1.set_title('Wave Signal')
+            axe_1.set_xlabel('Time (s)')
+            axe_1.set_ylabel('Amplitude')
+
+            fig.tight_layout()
 
             # Plota os textos referentes ao sample_rate, duration e total_data
             graphic.drawText(0.8, 0.9, f'SAMPLE RATE {signal.sample_rate}', axe_1, 'blue', 0.4);
