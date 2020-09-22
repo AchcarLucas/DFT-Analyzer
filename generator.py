@@ -120,7 +120,7 @@ def signalGenerator(file_name, signalGen):
         False -> Error
 '''
 def createSignalFromWav(file_wav_name, file_data_name):
-    #try:
+    try:
         with wave.open(file_wav_name, mode='rb') as wav:
             sample_rate = wav.getframerate()
             n_frame = wav.getnframes()
@@ -142,7 +142,7 @@ def createSignalFromWav(file_wav_name, file_data_name):
         data.saveData(file_data_name, dataSignal)
         
         return True
-    #except:
+    except:
         return False
 
 print(f'Generator Module Version: {_version()}')

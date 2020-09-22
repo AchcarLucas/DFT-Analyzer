@@ -52,6 +52,7 @@ class DFTClass(object):
     Args:
         data: lista dos dados a ser analisado
         sample_rate: taxa de amostragem em cada ciclo
+        interval_analyzer: intervalo da amostragem
     Return:
         Class DFTClass
 '''
