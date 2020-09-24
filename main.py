@@ -195,16 +195,15 @@ def _main():
         
         # Normaliza a fase
         for i in range(0, len(phases)):
-            if(phases[i] > 0.1):
-                phases[i] = 180 - (phases[i] * (180 / np.pi))
+            phases[i] = 90.0 - (-1*(phases[i] * (180 / np.pi)))
 
         # Adiciona o gráfico com suas legendas
 
         max_value_phase = max(phases) + 5
 
         # Configuração dos eixos (exibição)
-        x_major_ticks = np.arange(0, interval_analyzer[1], np.ceil(interval_analyzer[1]*(1 / interval_analyzer[1])))
-        y_major_ticks = np.arange(0, max_value_phase, np.ceil(max_value_phase*(1 / max_value_phase)))
+        x_major_ticks = np.arange(0, interval_analyzer[1], np.ceil(interval_analyzer[1]*(10.0 / interval_analyzer[1])))
+        y_major_ticks = np.arange(0, max_value_phase, np.ceil(max_value_phase*(10.0 / max_value_phase)))
 
         # Exibe os valores limites superiores e inferiores
         axe_2.set_xticks(x_major_ticks, minor=True)

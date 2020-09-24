@@ -72,7 +72,7 @@ def DFT(in_sample, sample_rate, interval_analyzer):
             
         out_sample[k - interval_analyzer[0]]._complex = t_complex
         out_sample[k - interval_analyzer[0]]._mag = math.sqrt(pow(t_complex._real, 2) + pow(t_complex._imag, 2)) / N;
-        out_sample[k - interval_analyzer[0]]._phase = math.atan2(t_complex._real, t_complex._imag);
+        out_sample[k - interval_analyzer[0]]._phase = math.atan2(t_complex._imag, t_complex._real);
             
     return out_sample
 
